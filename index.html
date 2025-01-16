@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link rel="stylesheet" href="/static/css/pom2.css">
+    <link rel="stylesheet" href="/static/css/config.css">
+    <link rel="stylesheet" href="/static/css/kim.css">
+    <script>
+        document.documentElement.style.setProperty("--dpr", window.devicePixelRatio + 'px');
+    </script>
+    <script type="module" src="/static/modules/init.js"></script>
+</head>
+
+<body>
+    <main>
+        <div class="window" id="config">
+            <div class="titlebar">
+                <div class="title">
+                    Welcome to KIM!
+                </div>
+                <div>
+                    <button class="close" role="none" aria-hidden="true">&times;</button>
+                </div>
+            </div>
+            <div class="content">
+                <label>
+                    Username:
+                    <input id="username" type="text" maxlength="30" size="15" value="Drifter" />
+                </label>
+                <label>
+                    Dating:
+                    <select id="dating">
+                        <option>None</option>
+                        <option>Aoi</option>
+                        <option>Amir</option>
+                        <option>Arthur</option>
+                        <option>Eleanor</option>
+                        <option>Lettie</option>
+                        <option>Quincy</option>
+                    </select>
+                </label>
+                <fieldset>
+                    <legend>Flags</legend>
+                    <label>
+                        <input type="checkbox" name="flags" value="DrifterInBackrooms" />
+                        <span>Drifter is in the backrooms<br>(as opposed to the orbiter)</span>
+                    </label>
+                    <label>
+                        <input type="checkbox" name="flags" value="Sexy" checked />
+                        <span>Risqué is OK</span>
+                    </label>
+                </fieldset>
+                <label>
+                    Chat with:
+                    <select id="chatwith">
+                        <option>Select Hex</option>
+                        <option>Aoi</option>
+                        <option>Amir</option>
+                        <option>Arthur</option>
+                        <option>Eleanor</option>
+                        <option>Lettie</option>
+                        <option>Quincy</option>
+                    </select>
+                </label>
+                <label>
+                    Topic:
+                    <select id="topic">
+                        <option>Select topic</option>
+                        <option data-whose="Arthur" disabled>Kalymos</option>
+                        <option data-whose="Arthur" disabled>Kalymos2</option>
+                        <option data-whose="Arthur" disabled>Komi</option>
+                    </select>
+                </label>
+                <label>
+                    <input type="checkbox" id="system" checked />
+                    Show system messages
+                </label>
+                <label>
+                    <input type="checkbox" id="delay" checked />
+                    Simulate chat delay
+                </label>
+                <button id="start">Start conversation</button>
+            </div>
+        </div>
+        <div class="window" id="chat">
+            <div class="titlebar">
+                <div class="title" id="chattitle">&larr; Choose some options!</div>
+                <div>
+                    <button class="close" role="none" aria-hidden="true">&times;</button>
+                </div>
+            </div>
+            <div class="content">
+                <div id="messages" aria-label="Chat log" role="log"></div>
+                <div id="status"></div>
+                <div id="options">
+                    <button disabled></button>
+                    <button disabled></button>
+                    <button disabled></button>
+                    <button disabled></button>
+                </div>
+            </div>
+        </div>
+    </main>
+</body>
+
+</html>
