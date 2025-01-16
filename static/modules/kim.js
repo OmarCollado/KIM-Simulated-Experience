@@ -87,7 +87,12 @@ async function runNode(currentNode) {
     }
 
     let runningNode = chatNodeList[currentNode];
-    runningNode.doAssigns();
+    if (runningNode.assigns.size) {
+        for (let kv of runningNode.assigns) {
+            GlobalFlags.set(kv[0], kv[1]);
+            await sendKIM(System, `${kv[0]} is now ${kv[1]}.`);
+        }
+    }
 
     for (const message of runningNode.messages) {
         if (message.enabled()) {

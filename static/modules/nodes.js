@@ -69,12 +69,6 @@ export default class KNode {
             str += "ASSIGNS: " + Array.from(this.assigns).map((kv) => kv[0] + ' —> ' + kv[1]).join('; ');
         return str;
     }
-
-    doAssigns() {
-        if (!this.assigns.size) return;
-        for (let kv of this.assigns)
-            GlobalFlags.set(kv[0], kv[1]);
-    }
 }
 
 class KMessage {
