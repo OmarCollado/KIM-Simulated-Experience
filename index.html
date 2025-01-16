@@ -7,6 +7,9 @@
     <link rel="stylesheet" href="/static/css/kim.css">
     <script>
         document.documentElement.style.setProperty("--dpr", window.devicePixelRatio + 'px');
+        const DOMContentLoaded = new Promise((resolve) => {
+            window.addEventListener("DOMContentLoaded", () => resolve());
+        });
     </script>
     <script type="module" src="/static/modules/init.js"></script>
 </head>

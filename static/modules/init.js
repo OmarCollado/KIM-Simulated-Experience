@@ -10,9 +10,11 @@ new Hex("Quincy", "Soldja1Shot1kil", 60);
 
 window.GlobalFlags = new Map();
 
-window.onload = () => {
+DOMContentLoaded.then(() => {
     document.getElementById("start").addEventListener("click", startConversation);
+});
 
+window.onload = () => {
     //####################################################
 
     window.$username = document.getElementById("username");
