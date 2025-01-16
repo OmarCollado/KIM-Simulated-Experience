@@ -113,6 +113,9 @@ async function runNode(currentNode) {
         $optionButtons[idx].disabled = false;
         $optionButtons[idx].textContent = option.text;
     });
+
+    if (!optionNodes.length)
+        throw new Error(`No endpoint following node ${currentNode}`);
 }
 
 function parseConversation(content) {
