@@ -1,4 +1,4 @@
-import Hex from "./hex.js";
+import { Typist, Drifter, Hex } from "./hex.js";
 import { startConversation, chooseOption } from "./kim.js";
 
 new Hex("Aoi", "xX GLIMMER Xx", 55);
@@ -9,9 +9,11 @@ new Hex("Lettie", "Belladona ~{@", 55);
 new Hex("Quincy", "Soldja1Shot1kil", 60);
 
 window.GlobalFlags = new Map();
+window.System = new Typist("System");
 
 DOMContentLoaded.then(() => {
     document.getElementById("start").addEventListener("click", startConversation);
+    window.Drifter = new Drifter(document.getElementById("username"));
 });
 
 window.onload = () => {

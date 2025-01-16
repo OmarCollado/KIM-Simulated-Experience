@@ -1,4 +1,4 @@
-import Hex from "./hex.js";
+import { Hex } from "./hex.js";
 import KNode from "./nodes.js";
 
 //################//
@@ -13,14 +13,14 @@ function pause(ms) {
 async function sendKIM(sender, message, wordcount, gold /*(unused)*/) {
     const senderEl = document.createElement('span');
     if (!sender) {
-        sender = chatTarget.username;
+        sender = chatTarget.toString();
         if (wordcount && $delay.checked) {
             $messageStatus.textContent = `${sender} is typing...`;
             await pause($messageWindow.children.length ? chatTarget.getTypingDelay(wordcount) : 300);
         }
     }
     else
-        senderEl.classList.add(sender.toLowerCase());
+        senderEl.classList.add(sender.name.toLowerCase());
     senderEl.textContent = sender;
 
     const contentEl = document.createElement('p');
@@ -46,7 +46,7 @@ export async function chooseOption(idx) {
         button.textContent = '';
         button.disabled = true;
     });
-    await sendKIM($username.value, message.text);
+    await sendKIM(Drifter, message.text);
     if (message.next) {
         await runNode(message.next);
     }
@@ -57,19 +57,20 @@ export async function chooseOption(idx) {
 
 export function startConversation() {
     if ($chatwith.selectedIndex === 0 || $chattopic.selectedIndex === 0) return;
-    chatTarget = Hex.member($chatwith.options[$chatwith.selectedIndex].textContent);
+    chatTarget = Hex.get($chatwith.options[$chatwith.selectedIndex].textContent);
 
-    $chattitle.textContent = chatTarget.username;
+    $chattitle.textContent = chatTarget.toString();
     $messageWindow.replaceChildren();
 
     const opt = $chattopic.options[$chattopic.selectedIndex];
-    getSrc(`${opt.dataset.whose}/${opt.textContent}`);
+    getSrc(opt.dataset.whose, opt.textContent);
 }
 
-async function getSrc(path) {
-    const response = await fetch(`/static/chats/${path}.txt`, { cache: "no-store" });
+async function getSrc(target, topic) {
+    const response = await fetch(`/static/chats/${target}/${topic}.txt`, { cache: "no-store" });
     const data = await response.text();
     lockConfig();
+    chatTarget = Hex.get(target);
     chatNodeList = parseConversation(data);
     await runNode(1);
 }
@@ -80,7 +81,7 @@ async function runNode(currentNode) {
 
     if (!currentNode) return;
     if (currentNode === "END") {
-        await sendKIM("System", "Chat has ended.");
+        await sendKIM(System, "Chat has ended.");
         unlockConfig();
         return Promise.resolve();
     }
