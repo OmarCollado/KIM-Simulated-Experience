@@ -21,7 +21,8 @@ window.onload = () => {
     window.$chattopic = document.getElementById("topic");
 
     window.$chattitle = document.getElementById("chattitle");
-    window.$messageWindow = document.getElementById("messages");
+    window.$messageWindow = document.getElementById("chatlog");
+    window.$messageStatus = document.getElementById("status");
     window.$optionButtons = [...document.getElementById("options").children];
     window.$flags = [...document.querySelectorAll("[name=flags]")];
 
@@ -36,7 +37,7 @@ window.onload = () => {
 
     function updateMessagesScrollPosition() {
         let msg = $messageWindow.querySelector("&> :last-child");
-        if (msg) msg.scrollIntoView({ block: "nearest", inline: "nearest" });
+        if (msg) msg.scrollIntoView({ block: "end", inline: "nearest" });
     }
 
     window.addEventListener('resize', function () {

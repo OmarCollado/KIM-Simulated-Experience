@@ -7,15 +7,16 @@ let chatTarget;
 //################//
 
 function pause(ms) {
-    return new Promise((resolve) => setTimeout(resolve, ms + 500));
+    return new Promise((resolve) => setTimeout(resolve, ms));
 }
 
 async function sendKIM(sender, message, wordcount, gold /*(unused)*/) {
     const senderEl = document.createElement('span');
     if (!sender) {
         sender = chatTarget.username;
-        if (wordcount && $delay.checked && $messageWindow.children.length) {
-            await pause(chatTarget.getTypingDelay(wordcount));
+        if (wordcount && $delay.checked) {
+            $messageStatus.textContent = `${sender} is typing...`;
+            await pause($messageWindow.children.length ? chatTarget.getTypingDelay(wordcount) : 300);
         }
     }
     else
@@ -31,6 +32,11 @@ async function sendKIM(sender, message, wordcount, gold /*(unused)*/) {
 
     $messageWindow.appendChild(div);
     div.scrollIntoView({ block: "nearest", inline: "nearest" });
+
+    if (wordcount && $delay.checked) {
+        $messageStatus.textContent = '';
+        await pause(300);
+    }
 }
 
 let optionNodes = [];
