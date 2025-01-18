@@ -1,6 +1,9 @@
 import GlobalFlags from "./flags.js";
 
-const MessageRE = new RegExp(/^((?:&\w+\s?)+)?(?:(\w+):\s+)?(.*?)(?:\s+(?:>(E|\d+)|(?:(&\w+)\s?>([\d|E]+):([\d|E]+))))?$/);
+const DestinationRE = new RegExp(/ *(?:&(!)?([a-zA-Z]+))?>([\d|E]+)(?::([\d|E]+))?$/);
+const ConditionalRE = new RegExp(/(?:&(!)?([a-zA-Z]+) )/);
+
+//const MessageRE = new RegExp(/^((?:&\w+\s?)+)?(?:(\w+):\s+)?(.*?)(?:\s+(?:>(E|\d+)|(?:(&\w+)\s?>([\d|E]+):([\d|E]+))))?$/);
 
 export default class Conversation {
     static #loaded = null;
@@ -62,26 +65,55 @@ class KNode {
         this.assigns = new Map();
     }
 
+    static parseDestination(invert, flag, dest1, dest2) {
+        // e.g. [ "!", "DummyFlag", "22", "E" ]
+        if (!parts.length) return null;
+
+        if (dest1 === 'E') dest1 = 'END';
+        if (dest2 === 'E') dest2 = 'END';
+
+        // >E or >12 etc.
+        if (flag === undefined)
+            return parts[2];
+
+        // &!DummyFlag>2:3 etc
+        if (invert)
+            [dest1, dest2] = [dest2, dest1];
+
+        return new KTest(flag, dest1, dest2);
+    }
+
+    static parseConditional(invert, flag) {
+        return invert ? () => !GlobalFlags.get(flag) : () => GlobalFlags.get(flag);
+    }
+
     static parseLine(line) {
-        let parts = line.match(MessageRE);
-        if (!parts) throw new Error(`Failed to parse line:\n${line}`);
+        let parts = line.split(DestinationRE);
+        line = parts.shift();
+
+        let next = null;
+        if (parts.length)
+            next = KNode.parseDestination(...parts);
+
+        //["&DummyFlag", undefined, "DummyFlag", "&!OtherFlag", "!", "OtherFlag", "Broadsword: This is a test message."]
+        parts = line.split(ConditionalRE);
+        line = parts.pop();
+
+        const tests = [];
+        for (let i = 0; i < parts.length; i += 3)
+            tests.push(KNode.parseConditional(parts[i + 1], parts[i + 2]));
+
+        return new KMessage(tests, line, next);
+
+        //let parts = line.match(MessageRE);
+        //if (!parts) throw new Error(`Failed to parse line:\n${line}`);
 
         /* 0=full / 1=flags / 2=speaker (unused) / 3=dialogue / 4=dest / 5=ternarydest */
 
-        parts[1] = parts[1] ? parts[1].trim().split(/\s+/) : null;
+        //parts[1] = parts[1] ? parts[1].trim().split(/\s+/) : null;
 
-        let next = null;
-        if (parts[4] === 'E') {
-            next = 'END';
-        }
-        else if (parts[4]) {
-            next = parts[4];
-        }
-        else if (parts[5]) {
-            next = new KTest(parts[5], parts[6], parts[7] || null);
-        }
 
-        return new KMessage(parts[1], parts[3], next);
+        //return new KMessage(parts[1], parts[3], next);
     }
 
     addAssign(flag, value) {
@@ -156,8 +188,8 @@ class KMessage {
 class KTest {
     constructor(flag, trueNode, falseNode) {
         this.flag = flag;
-        this.trueNode = trueNode;
-        this.falseNode = falseNode;
+        this.trueNode = trueNode || null;
+        this.falseNode = falseNode || null;
 
         if (!GlobalFlags.has(flag))
             GlobalFlags.set(flag, false);
