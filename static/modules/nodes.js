@@ -67,24 +67,15 @@ class KNode {
 
     static parseDestination(invert, flag, dest1, dest2) {
         // e.g. [ "!", "DummyFlag", "22", "E" ]
-        if (!parts.length) return null;
 
         if (dest1 === 'E') dest1 = 'END';
         if (dest2 === 'E') dest2 = 'END';
 
         // >E or >12 etc.
         if (flag === undefined)
-            return parts[2];
+            return dest1;
 
-        // &!DummyFlag>2:3 etc
-        if (invert)
-            [dest1, dest2] = [dest2, dest1];
-
-        return new KTest(flag, dest1, dest2);
-    }
-
-    static parseConditional(invert, flag) {
-        return invert ? () => !GlobalFlags.get(flag) : () => GlobalFlags.get(flag);
+        return new KTest(new KFlag(invert, flag), dest1, dest2);
     }
 
     static parseLine(line) {
@@ -99,21 +90,13 @@ class KNode {
         parts = line.split(ConditionalRE);
         line = parts.pop();
 
-        const tests = [];
+        const flags = [];
         for (let i = 0; i < parts.length; i += 3)
-            tests.push(KNode.parseConditional(parts[i + 1], parts[i + 2]));
+            flags.push(new KFlag(parts[i + 1], parts[i + 2]));
 
-        return new KMessage(tests, line, next);
+        line = line.replace(/^.*?:\s+/, ""); // drop username; don't need it
 
-        //let parts = line.match(MessageRE);
-        //if (!parts) throw new Error(`Failed to parse line:\n${line}`);
-
-        /* 0=full / 1=flags / 2=speaker (unused) / 3=dialogue / 4=dest / 5=ternarydest */
-
-        //parts[1] = parts[1] ? parts[1].trim().split(/\s+/) : null;
-
-
-        //return new KMessage(parts[1], parts[3], next);
+        return [flags, line, next];
     }
 
     addAssign(flag, value) {
@@ -122,7 +105,7 @@ class KNode {
 
     addMessage(message) {
         message.split("\n").forEach((line) => {
-            this.messages.push(this.constructor.parseLine(line));
+            this.messages.push(new KMessage(...KNode.parseLine(line)));
         });
     }
 
@@ -132,7 +115,7 @@ class KNode {
 
         let list = options.split(/\n\s*/);
         if (list.length === 1) {
-            this.options.push(this.constructor.parseLine(list[0]));
+            this.options.push(new KOption(...KNode.parseLine(list[0])));
         }
         else {
             if (list[0] !== "Drifter: [")
@@ -141,7 +124,7 @@ class KNode {
                 throw new Error(`Malformed opts tail: "${list[list.length - 1]}"`);
 
             list.slice(1, -1).forEach((line) => {
-                this.options.push(this.constructor.parseLine(line));
+                this.options.push(new KOption(...KNode.parseLine(line)));
             });
         }
     }
@@ -159,19 +142,20 @@ class KNode {
 
 class KMessage {
     constructor(flags, text, next) {
-        this.flags = flags;
-        this.text = text;
+        this.text = text || "";
         this.next = next || null;
         this.wordcount = (this.text.match(/\b\w{2,}\b/g) || "").length
 
-        if (flags)
+        if (flags && flags.length) {
+            this.flags = flags;
             flags.forEach((flag) => {
-                if (!GlobalFlags.has(flag))
-                    GlobalFlags.set(flag, false);
+                if (!GlobalFlags.has(flag.name))
+                    GlobalFlags.set(flag.name, false);
             });
+        }
     }
-    enabled() {
-        return !this.flags || this.flags.every((flag) => GlobalFlags.get(flag));
+    get enabled() {
+        return !this.flags || this.flags.every((flag) => flag.eval());
     }
     toString() {
         let str = '';
@@ -185,25 +169,47 @@ class KMessage {
     }
 }
 
+class KOption extends KMessage {
+    get ends() {
+        let next = this.next;
+        while (next instanceof KTest)
+            next = next.next;
+        return next === 'END';
+    }
+}
+
 class KTest {
     constructor(flag, trueNode, falseNode) {
         this.flag = flag;
         this.trueNode = trueNode || null;
         this.falseNode = falseNode || null;
 
-        if (!GlobalFlags.has(flag))
-            GlobalFlags.set(flag, false);
+        if (!GlobalFlags.has(flag.name))
+            GlobalFlags.set(flag.name, false);
     }
-    enabled() {
+    get enabled() {
         return true;
     }
     get next() {
-        return GlobalFlags.get(this.flag) ? this.trueNode : this.falseNode;
+        return this.flag.eval() ? this.trueNode : this.falseNode;
     }
     toString() {
         let str = this.flag + " —> TRUE: " + this.trueNode.toString();
         if (this.falseNode)
             str += "; —> FALSE: " + this.falseNode.toString();
         return str;
+    }
+}
+
+class KFlag {
+    constructor(invert, name) {
+        this.invert = !!invert;
+        this.name = name;
+    }
+    eval() {
+        return this.invert ^ GlobalFlags.get(this.name);
+    }
+    toString() {
+        return (this.invert ? '!' : '') + this.name;
     }
 }

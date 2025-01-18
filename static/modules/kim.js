@@ -15,6 +15,8 @@ function updateStatus(text) {
 }
 
 async function sendKIM(sender, message, wordcount, gold /*(unused)*/) {
+    if (!message) return;
+
     const senderEl = document.createElement('span');
     if (!sender) {
         sender = chatTarget.toString();
@@ -101,7 +103,7 @@ async function runNode(currentNode) {
     }
 
     for (const message of runningNode.messages) {
-        if (message.enabled()) {
+        if (message.enabled) {
             await sendKIM(null, message.text, message.wordcount);
             if (message.next) {
                 await runNode(message.next);
@@ -112,12 +114,12 @@ async function runNode(currentNode) {
 
     optionNodes = [];
     runningNode.options.forEach((option) => {
-        if (!option.enabled()) return;
+        if (!option.enabled) return;
         optionNodes.push(option);
     });
     optionNodes.forEach((option, idx) => {
         $optionButtons[idx].disabled = false;
-        $optionButtons[idx].textContent = option.text;
+        $optionButtons[idx].textContent = option.text + (option.ends ? ' [End.]' : '');
     });
 
     if (!optionNodes.length)

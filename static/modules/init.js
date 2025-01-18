@@ -77,7 +77,7 @@ window.onload = () => {
     {
         $flags.forEach((flag) => {
             var lsv = localStorage.getItem(flag.value);
-            GlobalFlags.set(`&${flag.value}`, flag.checked = lsv === "true");
+            GlobalFlags.set(flag.value, flag.checked = lsv === "true");
             flag.addEventListener('change', function () {
                 localStorage.setItem(this.value, this.checked);
                 GlobalFlags.set(this.value, this.checked);
@@ -103,15 +103,15 @@ window.onload = () => {
         });
 
         function updateDatingFlags(value) {
-            GlobalFlags.set("&IsDating", !!value);
+            GlobalFlags.set("IsDating", !!value);
             [...$dating.options].forEach((opt, idx) => {
                 if (!idx) return;
                 if (idx == value) {
                     opt.selected = true;
-                    GlobalFlags.set(`&${opt.textContent}Dating`, true);
+                    GlobalFlags.set(`${opt.textContent}Dating`, true);
                 }
                 else {
-                    GlobalFlags.set(`&${opt.textContent}Dating`, false);
+                    GlobalFlags.set(`${opt.textContent}Dating`, false);
                 }
             });
         }
