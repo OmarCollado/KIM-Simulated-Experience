@@ -82,10 +82,10 @@ async function getSrc(target, topic) {
 }
 
 async function runNode(currentNode) {
-    while (typeof currentNode === "object")
+    while (currentNode && typeof currentNode === "object")
         currentNode = currentNode.next;
 
-    if (!currentNode) return;
+    if (!currentNode) return Promise.resolve();
     if (currentNode === "END") {
         await sendKIM(System, "Chat has ended.");
         updateStatus(`${chatTarget} is offline.`);
