@@ -1,5 +1,6 @@
 import { Hex } from "./hex.js";
 import Conversation from "./nodes.js";
+import GlobalFlags from "./flags.js";
 
 //################//
 let chatTarget;
@@ -93,7 +94,8 @@ async function runNode(currentNode) {
     let runningNode = Conversation.nodes[currentNode];
     if (runningNode.assigns.size) {
         for (let kv of runningNode.assigns) {
-            GlobalFlags.set(kv[0], kv[1]);
+            if (!$nosave.checked)
+                GlobalFlags.set(kv[0], kv[1]);
             await sendKIM(System, `${kv[0]} is now ${kv[1]}.`);
         }
     }

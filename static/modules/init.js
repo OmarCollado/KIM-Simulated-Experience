@@ -1,5 +1,6 @@
 import { Typist, Drifter, Hex } from "./hex.js";
 import { startConversation, chooseOption } from "./kim.js";
+import GlobalFlags from "./flags.js";
 
 new Hex("Aoi", "xX GLIMMER Xx", 55);
 new Hex("Amir", "H16h V0l7463", 1000);
@@ -8,8 +9,8 @@ new Hex("Eleanor", "Salem", 80);
 new Hex("Lettie", "Belladona ~{@", 55);
 new Hex("Quincy", "Soldja1Shot1kil", 60);
 
-window.GlobalFlags = new Map();
 window.System = new Typist("System");
+window.GlobalFlags = GlobalFlags;
 window.Config = {
     //
 }
@@ -35,6 +36,7 @@ window.onload = () => {
 
     window.$delay = document.getElementById("delay");
     window.$system = document.getElementById("system");
+    window.$nosave = document.getElementById("nosave");
 
     $optionButtons.forEach((btn, idx) => {
         btn.addEventListener('click', () => chooseOption(idx));
@@ -75,9 +77,10 @@ window.onload = () => {
     {
         $flags.forEach((flag) => {
             var lsv = localStorage.getItem(flag.value);
-            flag.checked = lsv === "true";
+            GlobalFlags.set(`&${flag.value}`, flag.checked = lsv === "true");
             flag.addEventListener('change', function () {
                 localStorage.setItem(this.value, this.checked);
+                GlobalFlags.set(this.value, this.checked);
             });
         });
     }
@@ -162,6 +165,14 @@ window.onload = () => {
         $delay.checked = lsv === "true";
         $delay.addEventListener('change', () => {
             localStorage.setItem("delay", !!$delay.checked);
+        });
+    }
+
+    {
+        var lsv = localStorage.getItem("nosave");
+        $nosave.checked = lsv === "true";
+        $nosave.addEventListener('change', () => {
+            localStorage.setItem("nosave", !!$nosave.checked);
         });
     }
 };

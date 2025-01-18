@@ -1,3 +1,5 @@
+import GlobalFlags from "./flags.js";
+
 const MessageRE = new RegExp(/^((?:&\w+\s?)+)?(?:(\w+):\s+)?(.*?)(?:\s+(?:>(E|\d+)|(?:(&\w+)\s?>([\d|E]+):([\d|E]+))))?$/);
 
 export default class Conversation {
