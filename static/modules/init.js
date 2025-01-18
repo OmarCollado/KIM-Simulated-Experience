@@ -10,6 +10,9 @@ new Hex("Quincy", "Soldja1Shot1kil", 60);
 
 window.GlobalFlags = new Map();
 window.System = new Typist("System");
+window.Config = {
+    //
+}
 
 DOMContentLoaded.then(() => {
     document.getElementById("start").addEventListener("click", startConversation);
@@ -112,10 +115,28 @@ window.onload = () => {
     }
 
     {
-        $chatwith.addEventListener('change', () => {
+        var lsv = parseInt(localStorage.getItem("chatwith"));
+
+        if (!isNaN(lsv))
+            $chatwith.options[lsv].selected = true;
+
+        $chatwith.addEventListener('change', updateChatTarget);
+        updateChatTarget();
+
+        function updateChatTarget() {
             let name = $chatwith.options[$chatwith.selectedIndex].textContent;
             [...$chattopic.options].slice(1).forEach((opt) => opt.disabled = opt.dataset.whose !== name);
-        });
+            localStorage.setItem("chatwith", $chatwith.selectedIndex);
+        }
+    }
+
+    {
+        var lsv = parseInt(localStorage.getItem("chattopic"));
+
+        if (!isNaN(lsv))
+            $chattopic.options[lsv].selected = true;
+
+        $chattopic.addEventListener('change', () => localStorage.setItem("chattopic", $chattopic.selectedIndex));
     }
 
     {
