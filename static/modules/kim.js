@@ -33,10 +33,9 @@ async function sendKIM(sender, message, wordcount, gold /*(unused)*/) {
     $messageWindow.appendChild(div);
     div.scrollIntoView({ block: "nearest", inline: "nearest" });
 
-    if (wordcount && $delay.checked) {
-        $messageStatus.textContent = '';
+    $messageStatus.textContent = '';
+    if (wordcount && $delay.checked)
         await pause(300);
-    }
 }
 
 let optionNodes = [];
