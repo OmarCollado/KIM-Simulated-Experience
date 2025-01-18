@@ -1,6 +1,58 @@
-const MessageRE = new RegExp(/^((?:&\w+\s?)+)?(?:(\w+):\s+)?(.*?)(?:\s+(?:>(E|\d+)|(?:(&\w+)\s?>(\d+):(\d+))))?$/);
+const MessageRE = new RegExp(/^((?:&\w+\s?)+)?(?:(\w+):\s+)?(.*?)(?:\s+(?:>(E|\d+)|(?:(&\w+)\s?>([\d|E]+):([\d|E]+))))?$/);
 
-export default class KNode {
+export default class Conversation {
+    static #loaded = null;
+
+    constructor() {
+        this.nodes = [];
+    }
+
+    static load(chatScript) {
+        const chat = new Conversation();
+
+        let currentNode = 0;
+        chatScript.split(/\n\n/gm).forEach((chunk) => {
+            chunk = chunk.trim();
+
+            let head = chunk.match(/(?<=#)\d+/);
+            if (head) {
+                currentNode = head[0];
+                if (chat.nodes[currentNode] !== undefined)
+                    throw new Error("Attempt to redefine node " + currentNode);
+                chat.nodes[currentNode] = new KNode(currentNode);
+            }
+            else {
+                let parts = chunk.match(/^Drifter: (\[)?/);
+                if (parts !== null)
+                    chat.nodes[currentNode].addOptions(chunk);
+                else {
+                    parts = chunk.match(/^(&\w+)=(TRUE|FALSE)$/);
+                    if (parts !== null)
+                        chat.nodes[currentNode].addAssign(parts[1], parts[2]);
+                    else
+                        chat.nodes[currentNode].addMessage(chunk);
+                }
+            }
+        });
+
+        chat.nodes.forEach((node, idx) => {
+            if (!node) console.warn("Missing in sequence: " + idx);
+            else console.log(node.toString());
+        });
+
+        Conversation.#loaded = chat;
+    }
+
+    static get nodes() {
+        return Conversation.#loaded.nodes;
+    }
+
+    toString() {
+        return this.nodes.join("\n---");
+    }
+}
+
+class KNode {
     constructor(id) {
         this.id = id;
         this.messages = [];

@@ -66,7 +66,13 @@
         }
     }
 
-    &.hide-system div:has(.system) {
+    &.hide-system>div {
+        &:nth-last-child(1 of &:not(:has(.system))) {
+            padding-bottom: 1rem;
+        }
+    }
+
+    &.hide-system>div:has(.system) {
         display: none;
     }
 }

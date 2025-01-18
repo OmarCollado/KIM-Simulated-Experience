@@ -1,8 +1,7 @@
 import { Hex } from "./hex.js";
-import KNode from "./nodes.js";
+import Conversation from "./nodes.js";
 
 //################//
-let chatNodeList = null;
 let chatTarget;
 //################//
 
@@ -10,12 +9,16 @@ function pause(ms) {
     return new Promise((resolve) => setTimeout(resolve, ms));
 }
 
+function updateStatus(text) {
+    $messageStatus.textContent = text;
+}
+
 async function sendKIM(sender, message, wordcount, gold /*(unused)*/) {
     const senderEl = document.createElement('span');
     if (!sender) {
         sender = chatTarget.toString();
         if (wordcount && $delay.checked) {
-            $messageStatus.textContent = `${sender} is typing...`;
+            updateStatus(`${sender} is typing...`);
             await pause($messageWindow.children.length ? chatTarget.getTypingDelay(wordcount) : 300);
         }
     }
@@ -33,7 +36,7 @@ async function sendKIM(sender, message, wordcount, gold /*(unused)*/) {
     $messageWindow.appendChild(div);
     div.scrollIntoView({ block: "nearest", inline: "nearest" });
 
-    $messageStatus.textContent = '';
+    updateStatus('');
     if (wordcount && $delay.checked)
         await pause(300);
 }
@@ -70,7 +73,8 @@ async function getSrc(target, topic) {
     const data = await response.text();
     lockConfig();
     chatTarget = Hex.get(target);
-    chatNodeList = parseConversation(data);
+    Conversation.load(data);
+    updateStatus('');
     await runNode(1);
 }
 
@@ -81,11 +85,12 @@ async function runNode(currentNode) {
     if (!currentNode) return;
     if (currentNode === "END") {
         await sendKIM(System, "Chat has ended.");
+        updateStatus(`${chatTarget} is offline.`);
         unlockConfig();
         return Promise.resolve();
     }
 
-    let runningNode = chatNodeList[currentNode];
+    let runningNode = Conversation.nodes[currentNode];
     if (runningNode.assigns.size) {
         for (let kv of runningNode.assigns) {
             GlobalFlags.set(kv[0], kv[1]);
@@ -115,39 +120,4 @@ async function runNode(currentNode) {
 
     if (!optionNodes.length)
         throw new Error(`No endpoint following node ${currentNode}`);
-}
-
-function parseConversation(content) {
-    const nodes = [];
-    let currentNode = 0;
-    content.split(/\n\n/gm).forEach((chunk) => {
-        chunk = chunk.trim();
-
-        let head = chunk.match(/(?<=#)\d+/);
-        if (head) {
-            currentNode = head[0];
-            if (nodes[currentNode] !== undefined)
-                throw new Error("Attempt to redefine node " + currentNode);
-            nodes[currentNode] = new KNode(currentNode);
-        }
-        else {
-            let parts = chunk.match(/^Drifter: (\[)?/);
-            if (parts !== null)
-                nodes[currentNode].addOptions(chunk);
-            else {
-                parts = chunk.match(/^(&\w+)=(TRUE|FALSE)$/);
-                if (parts !== null)
-                    nodes[currentNode].addAssign(parts[1], parts[2]);
-                else
-                    nodes[currentNode].addMessage(chunk);
-            }
-        }
-    });
-
-    nodes.forEach((node, idx) => {
-        if (!node) console.warn("Missing in sequence: " + idx);
-        else console.log(node.toString());
-    });
-
-    return nodes;
 }
