@@ -38,7 +38,11 @@ window.onload = () => {
     window.$system = document.getElementById("system");
     window.$nosave = document.getElementById("nosave");
 
+    window.$start = document.getElementById("start");
+
     $optionButtons.forEach((btn, idx) => {
+        btn.textContent = '';
+        btn.disabled = true;
         btn.addEventListener('click', () => chooseOption(idx));
     });
 
@@ -53,25 +57,13 @@ window.onload = () => {
         updateMessagesScrollPosition();
     });
 
-
-
-
-
+    const lockingConfigOptions = [...document.getElementById("config").querySelectorAll("input:not(#system, #delay), select, button:not(#reload)")];
 
     window.lockConfig = function () {
-        $username.readOnly = true;
-        $dating.disabled = true;
-        $chatwith.disabled = true;
-        $chattopic.disabled = true;
-        $flags.forEach((cb) => cb.disabled = true);
+        lockingConfigOptions.forEach((el) => el.disabled = true);
     };
-
     window.unlockConfig = function () {
-        $username.readOnly = false;
-        $dating.disabled = false;
-        $chatwith.disabled = false;
-        $chattopic.disabled = false;
-        $flags.forEach((cb) => cb.disabled = false);
+        lockingConfigOptions.forEach((el) => el.disabled = false);
     };
 
     {
