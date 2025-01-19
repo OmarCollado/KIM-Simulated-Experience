@@ -133,8 +133,8 @@ Broadsword: Viktor will have to do a lot worse to deny me *that.* >E
 #33
 
 Broadsword: One more thing, before I'm back to work — we're up to our ears in it, today.
-Broadsword: ...To the point that the duty rota's more of a *suggestion* than a proper schedule...
-&Sexy Broadsword: I might need a rain check on our "extracurriculars."
+Broadsword: ...To the point that the duty rota's more of a "suggestion" than a proper schedule...
+&Sexy Broadsword: I might need a rain check on our... extracurriculars.
 Broadsword: But I won't miss our dinner date. >E
 
 #24
