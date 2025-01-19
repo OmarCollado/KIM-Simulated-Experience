@@ -18,7 +18,7 @@ select {
         }
     }
 
-    & button {
+    & .content button {
         width: 100%;
 
         &:disabled {
