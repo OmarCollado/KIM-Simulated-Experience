@@ -52,12 +52,7 @@ export async function chooseOption(idx) {
         button.disabled = true;
     });
     await sendKIM(Drifter, message.text);
-    if (message.next) {
-        await runNode(message.next);
-    }
-    else {
-        throw new Error("Choosing an option has to go somewhere!");
-    }
+    await runNode(message.nextMajorNode || (() => { throw new Error("Choosing an option has to go somewhere!") })());
 }
 
 export function startConversation() {
@@ -82,10 +77,8 @@ async function getSrc(target, topic) {
 }
 
 async function runNode(currentNode) {
-    while (currentNode && typeof currentNode === "object")
-        currentNode = currentNode.next;
-
-    if (!currentNode) return Promise.resolve();
+    if (!currentNode)
+        throw new Error(`Can't run nothing!`);
     if (currentNode === "END") {
         await sendKIM(System, "Chat has ended.");
         updateStatus(`${chatTarget} is offline.`);
@@ -93,7 +86,9 @@ async function runNode(currentNode) {
         return Promise.resolve();
     }
 
-    let runningNode = Conversation.nodes[currentNode];
+    const runningNode = Conversation.nodes[currentNode];
+    if (!runningNode)
+        throw new Error(`Failed to find Conversation node at index ${currentNode}`);
     if (runningNode.assigns.size) {
         for (let kv of runningNode.assigns) {
             if (!$nosave.checked)
@@ -105,8 +100,9 @@ async function runNode(currentNode) {
     for (const message of runningNode.messages) {
         if (message.enabled) {
             await sendKIM(null, message.text, message.wordcount);
-            if (message.next) {
-                await runNode(message.next);
+            let next = message.nextMajorNode;
+            if (next) {
+                await runNode(next);
                 return Promise.resolve();
             }
         }

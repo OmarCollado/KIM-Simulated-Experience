@@ -94,9 +94,11 @@ class KNode {
         for (let i = 0; i < parts.length; i += 3)
             flags.push(new KFlag(parts[i + 1], parts[i + 2]));
 
-        line = line.replace(/^.*?:\s+/, ""); // drop username; don't need it
-
         return [flags, line, next];
+    }
+
+    static trimSpeaker(line) {
+        return line.replace(/^.*?:\s+/, "");
     }
 
     addAssign(flag, value) {
@@ -105,7 +107,9 @@ class KNode {
 
     addMessage(message) {
         message.split("\n").forEach((line) => {
-            this.messages.push(new KMessage(...KNode.parseLine(line)));
+            const args = KNode.parseLine(line);
+            args[1] = KNode.trimSpeaker(args[1]);
+            this.messages.push(new KMessage(...args));
         });
     }
 
@@ -115,7 +119,9 @@ class KNode {
 
         let list = options.split(/\n\s*/);
         if (list.length === 1) {
-            this.options.push(new KOption(...KNode.parseLine(list[0])));
+            const args = KNode.parseLine(list[0]);
+            args[1] = KNode.trimSpeaker(args[1]);
+            this.options.push(new KOption(...args));
         }
         else {
             if (list[0] !== "Drifter: [")
@@ -156,6 +162,12 @@ class KMessage {
     }
     get enabled() {
         return !this.flags || this.flags.every((flag) => flag.eval());
+    }
+    get nextMajorNode() {
+        let nextMessageNode = this.next;
+        while (nextMessageNode && typeof nextMessageNode === "object")
+            nextMessageNode = nextMessageNode.next;
+        return nextMessageNode;
     }
     toString() {
         let str = '';
