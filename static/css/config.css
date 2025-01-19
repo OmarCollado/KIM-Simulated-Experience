@@ -17,33 +17,33 @@ select {
             white-space: nowrap;
         }
     }
+
+    & button {
+        width: 100%;
+
+        &:disabled {
+            border: var(--pom2-border-width) inset var(--pom2-white);
+        }
+
+        &:not(:disabled) {
+            border: var(--pom2-border-width) solid var(--pom2-white);
+
+            /* white + darkgray better looking than outset/inset for this button imo */
+            &:not(:active) {
+                border-bottom-color: var(--pom2-darkgray);
+                border-right-color: var(--pom2-darkgray);
+            }
+
+            &:active {
+                border-left-color: var(--pom2-darkgray);
+                border-top-color: var(--pom2-darkgray);
+            }
+        }
+    }
 }
 
 #topic {
     &>option:disabled {
         display: none;
-    }
-}
-
-#start {
-    width: 100%;
-
-    &:disabled {
-        border: var(--pom2-border-width) inset var(--pom2-white);
-    }
-
-    &:not(:disabled) {
-        border: var(--pom2-border-width) solid var(--pom2-white);
-
-        /* white + darkgray better looking than outset/inset for this button imo */
-        &:not(:active) {
-            border-bottom-color: var(--pom2-darkgray);
-            border-right-color: var(--pom2-darkgray);
-        }
-
-        &:active {
-            border-left-color: var(--pom2-darkgray);
-            border-top-color: var(--pom2-darkgray);
-        }
     }
 }
