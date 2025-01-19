@@ -67,7 +67,7 @@ export function startConversation() {
 }
 
 async function getSrc(target, topic) {
-    const response = await fetch(`/static/chats/${target}/${topic}.txt`, { cache: "no-store" });
+    const response = await fetch(`static/chats/${target}/${topic}.txt`, { cache: "no-store" });
     const data = await response.text();
     lockConfig();
     chatTarget = Hex.get(target);
