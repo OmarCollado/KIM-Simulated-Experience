@@ -136,7 +136,7 @@ window.onload = () => {
 
     {
         var lsv = localStorage.getItem("system");
-        $system.checked = lsv === "true";
+        if (lsv) $system.checked = lsv === "true";
         updateSystemMessageVisibility();
 
         $system.addEventListener('change', () => {
@@ -154,7 +154,7 @@ window.onload = () => {
 
     {
         var lsv = localStorage.getItem("delay");
-        $delay.checked = lsv === "true";
+        if (lsv) $delay.checked = lsv === "true";
         $delay.addEventListener('change', () => {
             localStorage.setItem("delay", !!$delay.checked);
         });
@@ -162,7 +162,7 @@ window.onload = () => {
 
     {
         var lsv = localStorage.getItem("nosave");
-        $nosave.checked = lsv === "true";
+        if (lsv) $nosave.checked = lsv === "true";
         $nosave.addEventListener('change', () => {
             localStorage.setItem("nosave", !!$nosave.checked);
         });
