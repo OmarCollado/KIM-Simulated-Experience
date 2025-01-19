@@ -112,13 +112,14 @@ window.onload = () => {
     {
         var lsv = parseInt(localStorage.getItem("chatwith"));
 
-        if (!isNaN(lsv))
+        if (lsv && !isNaN(lsv))
             $chatwith.options[lsv].selected = true;
 
         $chatwith.addEventListener('change', updateChatTarget);
         updateChatTarget();
 
         function updateChatTarget() {
+            $chattopic.value = 0;
             let name = $chatwith.options[$chatwith.selectedIndex].textContent;
             [...$chattopic.options].slice(1).forEach((opt) => opt.disabled = opt.dataset.whose !== name);
             localStorage.setItem("chatwith", $chatwith.selectedIndex);
