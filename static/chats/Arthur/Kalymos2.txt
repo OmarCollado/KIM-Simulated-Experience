@@ -1,6 +1,6 @@
 #1
 
-Broadsword: We have a situation.
+We have a situation.
 
 Drifter: [
 Uh oh. >10
@@ -9,36 +9,36 @@ What kind? >10
 
 #10
 
-Broadsword: Kalymos was... visiting, I think. With Helminth. &ArthurDating>2:12
+Kalymos was... visiting, I think. With Helminth. &ArthurDating>2:12
 
 #12
 
-Broadsword: And she's brought something out from the backrooms with her — it looks like a lump of flesh. >3
+And she's brought something out from the backrooms with her — it looks like a lump of flesh. >3
 
 #2
 
-Broadsword: And now she's playing keepaway with what looks like a lump of flesh. >3
+And now she's playing keepaway with what looks like a lump of flesh. >3
 
 #3
 
-Broadsword: I can't get it away from her. She's doing that bloody void thing, and she's never listened to a word I say. &ArthurDating>4:11
+I can't get it away from her. She's doing that bloody void thing, and she's never listened to a word I say. &ArthurDating>4:11
 
 #11
 
-Broadsword: Eleanor's refusing to help. "Too funny," far as she's concerned.
-Broadsword: But — Kalymos also likes *you*.
-Broadsword: So, Drifter. >5
+Eleanor's refusing to help. "Too funny," far as she's concerned.
+But — Kalymos also likes *you*.
+So, Drifter. >5
 
 #4
 
-Broadsword: But she likes *you*.
-Broadsword: So, Drifter.
-Broadsword: Sweets.
-Broadsword: Love of my life. >5
+But she likes *you*.
+So, Drifter.
+Sweets.
+Love of my life. >5
 
 #5
 
-Broadsword: Please come and catch this godsforsaken cat before I lose my sanity.
+Please come and catch this godsforsaken cat before I lose my sanity.
 
 Drifter: [
     Drifter to the rescue. :) &ArthurDating>9:6
@@ -48,24 +48,24 @@ Drifter: [
 
 #6
 
-Broadsword: Thanks, mate. >13
+Thanks, mate. >13
 
 #13
 
-Broadsword: I owe you one. >E
+I owe you one. >E
 
 #9
 
-Broadsword: Thanks, love. >13
+Thanks, love. >13
 
 #7
 
-Broadsword: At least you're getting some enjoyment out of this. >E
+At least you're getting some enjoyment out of this. >E
 
 #8
 
-Broadsword: Fine. >E
+Fine. >E
 
 #14
 
-Broadsword: Very reliable of you. >E
+Very reliable of you. >E

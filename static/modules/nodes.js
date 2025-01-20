@@ -108,7 +108,7 @@ class KNode {
     addMessage(message) {
         message.split("\n").forEach((line) => {
             const args = KNode.parseLine(line);
-            args[1] = KNode.trimSpeaker(args[1]);
+            //args[1] = KNode.trimSpeaker(args[1]);
             this.messages.push(new KMessage(...args));
         });
     }

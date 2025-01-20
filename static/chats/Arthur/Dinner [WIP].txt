@@ -28,15 +28,15 @@ Drifter: [
 
 #21
 
-Broadsword: You need to work on your sales pitch, love. >8
+You need to work on your sales pitch, love. >8
 
 #22
 
-Broadsword: You need to work on your sales pitch, mate. >8
+You need to work on your sales pitch, mate. >8
 
 #23
 
-Broadsword: I don't like what you're implying.
+I don't like what you're implying.
 
 Drifter: [
     What am I implying? >24
@@ -46,37 +46,37 @@ Drifter: [
 
 #31
 
-Broadsword: Do you know how low of a bar that is for you?
-Broadsword: I'm not risking it. >E
+Do you know how low of a bar that is for you?
+I'm not risking it. >E
 
 #32
 
-Broadsword: That's not the call to action you think it is.
-Broadsword: Pass. >E
+That's not the call to action you think it is.
+Pass. >E
 
 #27
 
-Broadsword: Sol above, the things I do for you...
-Broadsword: What kind of food is it? >29
+Sol above, the things I do for you...
+What kind of food is it? >29
 
 #28
 
-Broadsword: You're a shining beacon of confidence...
-Broadsword: I'm going to stay out of this.
-Broadsword: You might try Quincy, though. >E
+You're a shining beacon of confidence...
+I'm going to stay out of this.
+You might try Quincy, though. >E
 
 #24
 
-Broadsword: That you wouldn't touch it with a ten foot pole. &ArthurDating>27:26
+That you wouldn't touch it with a ten foot pole. &ArthurDating>27:26
 
 #26
 
-Broadsword: If I didn't know better, I'd say you're trying to murder me.
-Broadsword: Not interested, sorry. >E
+If I didn't know better, I'd say you're trying to murder me.
+Not interested, sorry. >E
 
 #8
 
-Broadsword: What kind is it? >29
+What kind is it? >29
 
 #29
 
@@ -88,8 +88,8 @@ Some kind of gunk packet from Fortuna. >4
 
 #2
 
-Broadsword: The kind that's all squares?
-Broadsword: Well... I'm curious.
+The kind that's all squares?
+Well... I'm curious.
 
 Drifter: [
 It's pretty good. >9
@@ -101,11 +101,11 @@ It's pretty bad. >10
 
 &ArthurAteSquares=TRUE
 
-Broadsword: Looking forward to it, then. >E
+Looking forward to it, then. >E
 
 #11
 
-Broadsword: Are you *ever* going to let that go? Or am I stuck with it for all of eternity?
+Are you *ever* going to let that go? Or am I stuck with it for all of eternity?
 
 Drifter: [
     Stuck with it. >37
@@ -114,30 +114,30 @@ Drifter: [
 
 #37
 
-Broadsword: Ugh.
-Broadsword: I'll still eat your squares, but it might be out of spite. >E
+Ugh.
+I'll still eat your squares, but it might be out of spite. >E
 
 #36
 
 &SquareSpaghetti=FALSE
 
-Broadsword: Thank Sol for small miracles.
-Broadsword: Looking forward to trying your "squares." >E
+Thank Sol for small miracles.
+Looking forward to trying your "squares." >E
 
 #30
 
-Broadsword: I've changed my mind. >E
+I've changed my mind. >E
 
 #10
 
 &ArthurAteSquares=TRUE
 
-Broadsword: But you want to eat it for dinner?! &ArthurDating>12:13
+But you want to eat it for dinner?! &ArthurDating>12:13
 
 #12
 
-Broadsword: Sigh.
-Broadsword: Not really sure what it says about me that I'm still game for this.
+Sigh.
+Not really sure what it says about me that I'm still game for this.
 
 Drifter: [
     That you love me. :) >14
@@ -147,30 +147,30 @@ Drifter: [
 
 #14
 
-Broadsword: I do.
-Broadsword: Don't abuse your power too often, sweets.
-Broadsword: I'll see you at dinner. >E
+I do.
+Don't abuse your power too often, sweets.
+I'll see you at dinner. >E
 
 #15
 
-Broadsword: Clearly. >E
+Clearly. >E
 
 #16
 
-Broadsword: I'll find us something to wash it down with... >E
+I'll find us something to wash it down with... >E
 
 #13
 
-Broadsword: Fine. I'll join, but I won't promise not to insult it. >E
+Fine. I'll join, but I won't promise not to insult it. >E
 
 #4
 
 &ArthurAteGunk=TRUE
 
-Broadsword: "Gunk packet"?
-Broadsword: Not to ruin it for you, but we might have a few "gunk packets" laying around as it is.
-Broadsword: Rations — MREs. Chicken paté flavour.
-Broadsword: Tastes a bit like cat food.
+"Gunk packet"?
+Not to ruin it for you, but we might have a few "gunk packets" laying around as it is.
+Rations — MREs. Chicken paté flavour.
+Tastes a bit like cat food.
 
 Drifter: [
     So... Does that mean you don't want to try it? >33
@@ -180,11 +180,11 @@ Drifter: [
 
 #38
 
-Broadsword: Not in the least.
-Broadsword: Eleanor has a pet theory that they've actually been discontinued for years.
-Broadsword: They're shuffled around storerooms for a bit, then end up back at HQ.
-Broadsword: She's certain someone makes an excuse about "the budget" and redistributes them to the next poor sods.
-Broadsword: Only reason I know it isn't true is because Quincy keeps feeding ours to the local strays.
+Not in the least.
+Eleanor has a pet theory that they've actually been discontinued for years.
+They're shuffled around storerooms for a bit, then end up back at HQ.
+She's certain someone makes an excuse about "the budget" and redistributes them to the next poor sods.
+Only reason I know it isn't true is because Quincy keeps feeding ours to the local strays.
 
 Drifter: [
     Quincy's not a cat person, is he? >39
@@ -192,8 +192,8 @@ Drifter: [
 
 #39
 
-Broadsword: Hardly. He's in it for the FRHs.
-Broadsword: Doesn't want the food going to total waste, is all.
+Hardly. He's in it for the FRHs.
+Doesn't want the food going to total waste, is all.
 
 Drifter: [
     What's an FRH? >40
@@ -202,9 +202,9 @@ Drifter: [
 
 #40
 
-Broadsword: The little heaters.
-Broadsword: Not as useful for us, but most soldiers don't get to hole up in a place with a food court.
-Broadsword: The fun comes in using them to blow holes in plastic bottles.
+The little heaters.
+Not as useful for us, but most soldiers don't get to hole up in a place with a food court.
+The fun comes in using them to blow holes in plastic bottles.
 
 Drifter: [
     They explode?! >42
@@ -213,12 +213,12 @@ Drifter: [
 
 #42
 
-Broadsword: Don't get too excited. They're noisemakers, at best. >65
+Don't get too excited. They're noisemakers, at best. >65
 
 #65
 
-Broadsword: Can't say they aren't dangerous, but I saw worse in secondary school.
-Broadsword: At least Quincy knows better than to use them for pranks.
+Can't say they aren't dangerous, but I saw worse in secondary school.
+At least Quincy knows better than to use them for pranks.
 
 Drifter: [
     Quincy? I'm not so sure. >43
@@ -227,20 +227,20 @@ Drifter: [
 
 #44
 
-Broadsword: Don't make me warn you off, as well...
-Broadsword: In case it hasn't occurred to you: when a plastic bottle explodes,
-Broadsword: for civvies, it sounds near enough to a gunshot.
-Broadsword: Sol knows every time a car backfires someplace, it's an everloving bloody "incident."
+Don't make me warn you off, as well...
+In case it hasn't occurred to you: when a plastic bottle explodes,
+for civvies, it sounds near enough to a gunshot.
+Sol knows every time a car backfires someplace, it's an everloving bloody "incident."
 
 Drifter: So what *does* Quincy do with them? >45
 
 #45
 
-Broadsword: Puts on a show in the car park. "Science lessons," he says.
-Broadsword: Children can't get enough of it, that's for certain.
-Broadsword: I keep myself busy around those times. Pretend I don't know about it.
-Broadsword: More for his ego than anything else.
-Broadsword: Don't tell him I said that.
+Puts on a show in the car park. "Science lessons," he says.
+Children can't get enough of it, that's for certain.
+I keep myself busy around those times. Pretend I don't know about it.
+More for his ego than anything else.
+Don't tell him I said that.
 
 Drifter: [
     Secret's safe with me. >51
@@ -249,45 +249,45 @@ Drifter: [
 
 #46
 
-Broadsword: Can't imagine he'd be happy to hear it.
-Broadsword: But that's on your shoulders, not mine. >47
+Can't imagine he'd be happy to hear it.
+But that's on your shoulders, not mine. >47
 
 #51
 
-Broadsword: Appreciate it. And the chat. Not looking forward to the paté. &ArthurDating>48:49
+Appreciate it. And the chat. Not looking forward to the paté. &ArthurDating>48:49
 
 #47
 
-Broadsword: Appreciate the chat. Not looking forward to the paté. &ArthurDating>48:49
+Appreciate the chat. Not looking forward to the paté. &ArthurDating>48:49
 
 #48
 
-Broadsword: But I'm looking forward to your company. >E
+But I'm looking forward to your company. >E
 
 #49
 
-Broadsword: But, who knows? Might even be edible, if I'm lucky. >E
+But, who knows? Might even be edible, if I'm lucky. >E
 
 #43
 
-Broadsword: Heh. Can't blame you.
-Broadsword: I'm only as confident because I know what he's doing with them. >45
+Heh. Can't blame you.
+I'm only as confident because I know what he's doing with them. >45
 
 #41
 
-Broadsword: They're a little explosive, if you know what to do with them. >65
+They're a little explosive, if you know what to do with them. >65
 
 #34
 
-Broadsword: I meant the bleeding *smell,* love. >50
+I meant the bleeding *smell,* love. >50
 
 #58
 
-Broadsword: Bring one by my office when you can. Let's get it over with. >E
+Bring one by my office when you can. Let's get it over with. >E
 
 #52
 
-Broadsword: I meant the bleeding *smell,* mate! >50
+I meant the bleeding *smell,* mate! >50
 
 #50
 
@@ -298,40 +298,40 @@ Drifter: [
 
 #33
 
-Broadsword: Sigh.
-Broadsword: Let me find a drink to wash it down with. >E
+Sigh.
+Let me find a drink to wash it down with. >E
 
 #17
 
 &ArthurAteKuaka=TRUE
 
-Broadsword: Kuaka are rodents, aren't they? &LettieDating>7:18
+Kuaka are rodents, aren't they? &LettieDating>7:18
 
 #18
 
-&ArthurKomiRabbit Broadsword: Or are they rabbits?
-Broadsword: Must taste all right if somebody's making stew out of it. &ArthurDating>6:19
+&ArthurKomiRabbit Or are they rabbits?
+Must taste all right if somebody's making stew out of it. &ArthurDating>6:19
 
 #19
 
-Broadsword: But you might want to be... cautious, if you ask Lettie in. >E
+But you might want to be... cautious, if you ask Lettie in. >E
 
 #7
 
-Broadsword: You might want to run this by Lettie, mate. >E
+You might want to run this by Lettie, mate. >E
 
 #6
 
-Broadsword: I'll find us some drinks to wash it down. >E
+I'll find us some drinks to wash it down. >E
 
 #5
 
 &ArthurAteKuaka=TRUE
 
-Broadsword: You play komi with a rodent, and you also eat them.
+You play komi with a rodent, and you also eat them.
 
 Drifter: Different rodent, but yeah. >3
 
 #3
 
-Broadsword: I still wouldn't tell Lettie, if I were you. >E
+I still wouldn't tell Lettie, if I were you. >E
