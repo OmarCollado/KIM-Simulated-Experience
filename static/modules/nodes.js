@@ -44,6 +44,7 @@ export default class Conversation {
             if (!node) console.warn("Missing in sequence: " + idx);
             else console.log(node.toString());
         });
+        //console.log(`Word Count: ${chat.getWordCount()}`);
 
         Conversation.#loaded = chat;
     }
@@ -54,6 +55,19 @@ export default class Conversation {
 
     toString() {
         return this.nodes.join("\n---");
+    }
+
+    getWordCount() {
+        let wordcount = 0;
+        this.nodes.forEach((node) => {
+            node.messages.forEach((message) => {
+                wordcount += (message.text.match(/\b[a-zA-Z']{1,}\b/g) || "").length
+            });
+            node.options.forEach((option) => {
+                wordcount += (option.text.match(/\b[a-zA-Z']{1,}\b/g) || "").length
+            });
+        });
+        return wordcount;
     }
 }
 
