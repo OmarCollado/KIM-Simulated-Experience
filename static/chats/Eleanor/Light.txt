@@ -61,7 +61,7 @@ There's always Transference. I can bring you up there, whenever you want to look
 
 #33
 
-Not quite what I'm after, I'm afraid. I do appreciate your kindness. Truly.
+Not quite what I'm after, I'm afraid. I do appreciate your kindness. Truly. >9
 
 #32
 
@@ -169,15 +169,19 @@ Drifter: [
 
 The lightbulbs? I can't imagine how you think these things work, but you can't blow out the bulbs and do no damage to the rest of it.
 Even if we got all the streetlamps and spotlights, we're not home invaders.
-We might get the residents to turn off the lights on their own, though.
-Hmm. >26
+We might get the residents to turn off the lights on their own, though. >35
 
 #29
 
-That... isn't quite as far-fetched an idea as I'd expected.
-There are so many ways to do it. Frame it as necessity? Or a means of drawing investment and aid? Public holiday?
-Somehow, tricking people doesn't sour me as badly as getting them killed. It's almost like I'd be using my journalistic prowess in to rebel against my younger self.
-I don't know how realistic it is, but I like this one. >26
+That... isn't quite as far-fetched an idea as I'd expected. >35
+
+#35
+
+It could be framed as necessity — the preservation of a limited resource. A staged collaborative effort, seeking outside aid and investment.
+Or just a trashy public holiday, where drunk people stumble around, shut off all their lights at once, and go to bed early.
+Somehow, tricking people doesn't sour me as badly as getting them killed.
+The cherry on top is the feeling that I'd be turning my journalistic prowess in rebellion against my younger self.
+I don't know how realistic it is, but I like this one. >36
 
 #22
 
@@ -193,7 +197,8 @@ Drifter: [
 
 #27
 
-You're a beautiful optimist, Drifter, and I admire that about you. How, pray tell, would we find the expertise to build a rocket?
+You're a beautiful optimist, Drifter, and I admire that about you.
+How, pray tell, would we find the expertise to build a rocket?
 Moreover, how would we build it in under a year?
 
 Drifter: [
@@ -203,7 +208,8 @@ Drifter: [
 
 #30
 
-"Do you know how long that would take?!" I'd like to yell, but an eternal loop of a single year really doesn't lend toward giving a shit, does it? >26
+"Do you know how long that would take?!" I'd like to yell, incredulously.
+But the eternal loop of a single year doesn't leave much room to complain, does it? >26
 
 #21
 
@@ -225,16 +231,18 @@ Drifter: [
 #25
 
 And what if we do? That person will forget again with new year, same as everyone else.
-Though I suppose we'd know how to find them at that point.
-Notes and things wouldn't stay around, would they? Not unless you took them back to the future with you.
-Those belongings of yours that come and go with you — they aren't subject to all this, are they?
+Though I suppose we'd know how to find them at that point. Their notes and things would be reset too, I suppose.
+Possible epiphany — and please let me down easy if it isn't —
+Those belongings of yours that come and go with you, they aren't subject to all this "resetting," are they?
 Hmm. >26
 
 #26
 
-Drifter: [
-    Can we at least say it's worth thinking about? >31
-]
+Drifter: Can we at least say it's worth thinking about? >31
+
+#36
+
+Drifter: So we can agree it's worth thinking about? >31
 
 #31
 
