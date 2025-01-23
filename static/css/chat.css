@@ -133,7 +133,7 @@
             &:hover {
                 border-color: var(--pom2-black);
 
-                &::before {
+                &>span::before {
                     content: "\2023";
                 }
             }
