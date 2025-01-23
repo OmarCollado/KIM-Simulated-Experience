@@ -13,7 +13,7 @@ select {
         flex-direction: column;
         gap: var(--pom2-content-padding);
 
-        &>* {
+        & label>span {
             white-space: nowrap;
         }
     }

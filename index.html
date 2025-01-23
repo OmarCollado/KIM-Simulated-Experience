@@ -3,8 +3,7 @@
 
 <head>
     <meta name="robots" content="noindex">
-    <link rel="stylesheet" href="static/css/pom2.css">
-    <link rel="stylesheet" href="static/css/config.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="static/css/kim.css">
     <script>
         document.documentElement.style.setProperty("--dpr", window.devicePixelRatio + 'px');
@@ -15,9 +14,17 @@
     <script type="module" src="static/modules/init.js"></script>
 </head>
 
-<body>
+<body data-active="config">
+    <nav>
+        <button id="gotoConfig" onclick="focusConfig()" disabled>
+            Config Pane
+        </button>
+        <button id="gotoChat" onclick="focusChat()">
+            Chat Pane
+        </button>
+    </nav>
     <main>
-        <div class="window" id="config">
+        <div class="window active" id="config">
             <div class="titlebar">
                 <div class="title">
                     Welcome to KIM!
@@ -47,11 +54,13 @@
                     <legend>Flags</legend>
                     <label>
                         <input type="checkbox" name="flags" value="DrifterInBackroom" />
-                        <span>Drifter is in the backroom<br>(as opposed to the orbiter)</span>
+                        <span>Drifter is in the backroom</span>
+                        <br>
+                        <span>(as opposed to the orbiter)</span>
                     </label>
                     <label>
                         <input type="checkbox" name="flags" value="Sexy" checked />
-                        <span>Risqué is OK</span>
+                        Risqué is OK
                     </label>
                 </fieldset>
                 <label>
@@ -89,7 +98,17 @@
                 </label>
                 <label>
                     <input type="checkbox" id="nosave" />
-                    Don't save flag updates<br>made by conversation scripts
+                    <span>Don't save flag updates</span>
+                    <br>
+                    <span>made by conversation scripts</span>
+                </label>
+                <label>
+                    Oversized dialogue choices:
+                    <select id="optrender">
+                        <option>Animate</option>
+                        <option>Truncate</option>
+                        <option>Wrap</option>
+                    </select>
                 </label>
                 <button id="start">Start conversation</button>
                 <button id="reload" onclick="location.reload()">Reload</button>
@@ -99,8 +118,7 @@
         <div class="window" id="chat">
             <div class="titlebar">
                 <div class="title" id="chattitle">&larr; Choose some options!</div>
-                <div>
-                    <button class="close" role="none" aria-hidden="true">&times;</button>
+                <div><button class="close" role="none" aria-hidden="true">&times;</button>
                 </div>
             </div>
             <div class="content">
@@ -109,10 +127,10 @@
                     <div id="status"></div>
                 </div>
                 <div id="options">
-                    <button disabled></button>
-                    <button disabled></button>
-                    <button disabled></button>
-                    <button disabled></button>
+                    <button disabled><span></span></button>
+                    <button disabled><span></span></button>
+                    <button disabled><span></span></button>
+                    <button disabled><span></span></button>
                 </div>
             </div>
         </div>

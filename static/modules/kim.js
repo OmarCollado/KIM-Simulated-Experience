@@ -48,7 +48,7 @@ let optionNodes = [];
 export async function chooseOption(idx) {
     let message = optionNodes[idx];
     $optionButtons.forEach((button) => {
-        button.textContent = '';
+        button.updateTextContent('');
         button.disabled = true;
     });
     await sendKIM(Drifter, message.text);
@@ -71,6 +71,7 @@ async function getSrc(target, topic) {
     const data = await response.text();
     if (!data) throw new Error(`Failed to load ${target}/${topic}.txt!`);
     lockConfig();
+    focusChat();
     chatTarget = Hex.get(target);
     Conversation.load(data);
     updateStatus('');
@@ -116,7 +117,7 @@ async function runNode(currentNode) {
     });
     optionNodes.forEach((option, idx) => {
         $optionButtons[idx].disabled = false;
-        $optionButtons[idx].textContent = option.text + (option.ends ? ' [End.]' : '');
+        $optionButtons[idx].updateTextContent(option.text + (option.ends ? ' [End.]' : ''));
     });
 
     if (!optionNodes.length)

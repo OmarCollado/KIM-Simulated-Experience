@@ -40,11 +40,44 @@ window.onload = () => {
 
     window.$start = document.getElementById("start");
 
+    function updateOptionWidth() {
+        let width = $optionButtons[0].clientWidth;
+        $optionButtons.forEach((btn) => {
+            let diff = btn.children[0].clientWidth - width;
+            diff = diff > 5 ? -1 * diff : 0;
+            btn.style.setProperty("--slide-distance", `${diff}px`);
+        });
+    }
     $optionButtons.forEach((btn, idx) => {
-        btn.textContent = '';
+        btn.updateTextContent = function (val) {
+            this.children[0].textContent = val;
+            updateOptionWidth();
+        };
+        btn.updateTextContent('');
         btn.disabled = true;
         btn.addEventListener('click', () => chooseOption(idx));
     });
+
+    {
+        const $optrender = document.getElementById("optrender");
+        const $options = document.getElementById("options");
+
+        var lsv = localStorage.getItem("optrender");
+        if (lsv)
+            $optrender.selectedIndex = lsv;
+
+        $optrender.addEventListener("change", () => {
+            localStorage.setItem("optrender", $optrender.selectedIndex);
+            updateOptionRenderClass();
+        });
+
+        updateOptionRenderClass();
+
+        function updateOptionRenderClass() {
+            $options.dataset.render = $optrender.options[$optrender.selectedIndex].textContent.toLowerCase();
+            updateOptionWidth();
+        }
+    }
 
     //####################################################
 
@@ -55,15 +88,36 @@ window.onload = () => {
 
     window.addEventListener('resize', function () {
         updateMessagesScrollPosition();
+        updateOptionWidth();
     });
 
-    const lockingConfigOptions = [...document.getElementById("config").querySelectorAll("input:not(#system, #delay), select, button:not(#reload)")];
+    const lockingConfigOptions = [...document.getElementById("config").querySelectorAll("input:not(#system, #delay), select:not(#optrender), button:not(#reload)")];
 
     window.lockConfig = function () {
         lockingConfigOptions.forEach((el) => el.disabled = true);
     };
     window.unlockConfig = function () {
         lockingConfigOptions.forEach((el) => el.disabled = false);
+    };
+
+    const $config = document.getElementById("config");
+    const $chat = document.getElementById("chat");
+    const $gotoConfig = document.getElementById("gotoConfig");
+    const $gotoChat = document.getElementById("gotoChat");
+
+    window.focusChat = function () {
+        $gotoChat.disabled = true;
+        $config.classList.remove("active");
+        $chat.classList.add("active");
+        $chat.focus();
+        $gotoConfig.disabled = false;
+    };
+    window.focusConfig = function () {
+        $gotoConfig.disabled = true;
+        $config.classList.add("active");
+        $chat.classList.remove("active");
+        $config.focus();
+        $gotoChat.disabled = false;
     };
 
     {
