@@ -141,6 +141,7 @@
     }
 
     &[data-render="wrap"]>button {
+        min-height: var(--kim-button-height);
         height: fit-content;
         white-space: normal;
     }
