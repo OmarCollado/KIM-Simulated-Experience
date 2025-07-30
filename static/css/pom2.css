@@ -1,5 +1,23 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&display=swap');
-
+#divtest {
+  position: absolute; /* Sit on top of the page content */
+  display: block; /* Hidden by default */
+    top: 0;
+      left: 0;
+  width: 100%; /* Full width (cover the whole page) */
+  height: 100%; /* Full height (cover the whole page) */
+  z-index:1;
+    pointer-events: none;
+  --dot-bg: rgb(0, 0, 0);
+  --dot-color: rgb(255, 255, 255);
+  --dot-size: 2px;
+  --dot-space: 4px;
+	background:
+		linear-gradient(90deg, var(--dot-bg) calc(var(--dot-space) - var(--dot-size)), transparent 1%) center / var(--dot-space) var(--dot-space),
+		linear-gradient(var(--dot-bg) calc(var(--dot-space) - var(--dot-size)), transparent 1%) center / var(--dot-space) var(--dot-space),
+		var(--dot-color);
+   opacity:0.06;
+}
 :root {
     --ndpr: calc(-1 * var(--dpr));
 
@@ -38,11 +56,33 @@
     text-rendering: optimizeLegibility;
 }
 
+
+.amog {
+    text-align: left;
+    background: #c8c8c8;
+    border: none;
+    display:block;
+    width:100%;
+    line-height:0;
+    padding:3px;
+    margin-bottom:8px;
+}
+.amog:hover {
+    background: rgba(239, 198, 61, 0.56);
+}
+span {
+    display:inline-block;
+}
+img {
+    image-rendering: pixelated;
+    border-right: 2px solid grey;
+}
 html {
     font-size: 18px;
 }
 
 body {
+    z-index: 0;
     background-color: var(--pom2-blue);
     width: 100vw;
     height: 100vh;
@@ -72,10 +112,6 @@ button {
 body::before {
     content: '';
     position: fixed;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
     z-index: -1;
     box-shadow: inset 5px 5px 5rem rgba(0, 0, 0, 0.5), inset -5px -5px 5rem rgba(0, 0, 0, 0.5);
 }
@@ -122,11 +158,17 @@ main {
 .title {
     font-family: "Roboto Condensed";
 }
-
+var(--pom2-content-padding);
 .content {
-    padding: var(--pom2-content-padding);
+    padding: 10px;
 }
-
+.userpf {
+    margin-left:4px;
+    vertical-align:top;
+}
+span {
+    line-height:1;
+}
 .close {
     aspect-ratio: 1;
     vertical-align: text-bottom;
@@ -136,5 +178,9 @@ main {
     border: 1px solid var(--pom2-black);
     border-radius: var(--pom2-border-width);
     width: 1rem;
-    line-height: 0;
+    line-height: 0px;
+}
+.users {
+    border: 2px solid black;
+    padding: 5px;
 }

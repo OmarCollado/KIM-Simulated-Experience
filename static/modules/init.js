@@ -27,7 +27,7 @@ window.onload = () => {
     window.$dating = document.getElementById("dating");
     window.$chatwith = document.getElementById("chatwith");
     window.$chattopic = document.getElementById("topic");
-
+    window.$selectButtons = document.querySelectorAll(".amog");
     window.$chattitle = document.getElementById("chattitle");
     window.$messageWindow = document.getElementById("chatlog");
     window.$messageStatus = document.getElementById("status");
@@ -171,7 +171,16 @@ window.onload = () => {
 
         $chatwith.addEventListener('change', updateChatTarget);
         updateChatTarget();
-
+        $selectButtons.forEach(addListener);
+        function addListener(value, index) {
+            $selectButtons[index].addEventListener('click', () => updateChatTargetTest($selectButtons[index].value));
+            console.log($selectButtons[index].value);
+        }
+        function updateChatTargetTest(name) {
+            $chattopic.value = 0;
+            [...$chattopic.options].slice(1).forEach((opt) => opt.disabled = opt.dataset.whose !== name);
+            localStorage.setItem("chatwith", $chatwith.selectedIndex);
+        }
         function updateChatTarget() {
             $chattopic.value = 0;
             let name = $chatwith.options[$chatwith.selectedIndex].textContent;

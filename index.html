@@ -2,6 +2,7 @@
 <html>
 
 <head>
+    <title>KIM Simulated Experience</title>
     <meta name="robots" content="noindex">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="static/css/kim.css">
@@ -63,10 +64,33 @@
                         Risqué is OK
                     </label>
                 </fieldset>
+                <audio id="audioPlayer" preload="auto">
+                <source src="select.wav" type="audio/wav">
+                Your browser does not support the audio element.
+                </audio>
+                <div class="users">
+                <button class="amog" onclick="play()" value="Aoi">
+                <img src="glimmer.JPG" width="64px"><span class="userpf">xX GLIMMER Xx<br><span>Offline</span></span>
+                </button>
+                <button class="amog" onclick="play()" value="Amir">
+                <img src="highvoltage.JPG" width="64px"><span class="userpf">H16h V0l7463<br><span>Online</span></span>
+                </button>
+                <button class="amog" onclick="play()" value="Arthur">
+                <img src="broadsword.JPG" width="64px"><span class="userpf">Broadsword<br><span>Online</span></span>
+                </button>
+                <button class="amog" onclick="play();" value="Eleanor">
+                <img src="eleanorpfp.png" width="64px"><span class="userpf">Salem<br><span>Online</span></span>
+                </button>
+                <button class="amog" onclick="play()" value="Lettie">
+                <img src="belladona.JPG" width="64px"><span class="userpf">Belladonna ~{@<br><span>Offline</span></span>
+                </button>
+                <button class="amog" onclick="play()" value="Quincy">
+                <img src="solda.JPG" width="64px"><span class="userpf">Soldja1Shot1kil<br><span>Offline</span></span>
+                </button>
+                </div>
                 <label>
                     Chat with:
                     <select id="chatwith">
-                        <option>Select Hex</option>
                         <option disabled>Aoi</option>
                         <option>Amir</option>
                         <option>Arthur</option>
@@ -86,6 +110,7 @@
                         <option data-whose="Arthur" disabled>Oil</option>
                         <option data-whose="Amir" disabled>Internet</option>
                         <option data-whose="Eleanor" disabled>Light</option>
+                        <option data-whose="Eleanor" disabled>Viktor</option>
                     </select>
                 </label>
                 <label>
@@ -135,6 +160,18 @@
             </div>
         </div>
     </main>
+    <script>
+  let audioPlayer = document.getElementById('audioPlayer');
+  function play(){
+    audioPlayer.load(); // reload the audio player so that the audio restarts from the beginning on each click
+    audioPlayer.play();
+  }
+</script>
+        <audio controls loop>
+    <source src="audio.mp3" type="audio/mpeg">
+    Your browser does not support the audio element.
+    </audio>
+    <div id="divtest"></div>
 </body>
 
 </html>
