@@ -70,10 +70,10 @@
 .amog:hover {
     background: rgba(239, 198, 61, 0.56);
 }
-span {
+.amog > span {
     display:inline-block;
 }
-img {
+.amog > img {
     image-rendering: pixelated;
     border-right: 2px solid grey;
 }
@@ -181,6 +181,9 @@ span {
     line-height: 0px;
 }
 .users {
-    border: 2px solid black;
+    border: 4px inset #d3d3d3;
+    border-right: 4px inset #9f9f9f;
     padding: 5px;
+    overflow-y: scroll;
+    height: 500px;
 }

@@ -56,8 +56,8 @@ export async function chooseOption(idx) {
 }
 
 export function startConversation() {
-    if ($chatwith.selectedIndex === 0 || $chattopic.selectedIndex === 0) return;
-    chatTarget = Hex.get($chatwith.options[$chatwith.selectedIndex].textContent);
+    if ( localStorage.getItem("chatwith") == null || $chattopic.selectedIndex === -1) return;
+    chatTarget = Hex.get($chatwith);
 
     $chattitle.textContent = chatTarget.toString();
     $messageWindow.replaceChildren();

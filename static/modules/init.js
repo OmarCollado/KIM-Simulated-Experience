@@ -22,10 +22,9 @@ DOMContentLoaded.then(() => {
 
 window.onload = () => {
     //####################################################
-
+    window.$chatwith = "none";
     window.$username = document.getElementById("username");
     window.$dating = document.getElementById("dating");
-    window.$chatwith = document.getElementById("chatwith");
     window.$chattopic = document.getElementById("topic");
     window.$selectButtons = document.querySelectorAll(".amog");
     window.$chattitle = document.getElementById("chattitle");
@@ -165,27 +164,35 @@ window.onload = () => {
 
     {
         var lsv = parseInt(localStorage.getItem("chatwith"));
-
+        var namestonum = [["Aoi", 0], ["Amir", 1], ["Arthur", 2], ["Eleanor", 3], ["Lettie", 4], ["Quincy", 5]];
         if (lsv && !isNaN(lsv))
-            $chatwith.options[lsv].selected = true;
+            var name;
+            namestonum.forEach((nameset) => {
+                if(nameset[1] == lsv){
+                    name = nameset[0];
+                    $chatwith = name;
+                }
+            });
+            [...$chattopic.options].slice(1).forEach((opt) => opt.disabled = opt.dataset.whose !== name);
 
-        $chatwith.addEventListener('change', updateChatTarget);
-        updateChatTarget();
         $selectButtons.forEach(addListener);
+
+
+
         function addListener(value, index) {
             $selectButtons[index].addEventListener('click', () => updateChatTargetTest($selectButtons[index].value));
             console.log($selectButtons[index].value);
         }
+
         function updateChatTargetTest(name) {
             $chattopic.value = 0;
+            $chatwith = name;
             [...$chattopic.options].slice(1).forEach((opt) => opt.disabled = opt.dataset.whose !== name);
-            localStorage.setItem("chatwith", $chatwith.selectedIndex);
-        }
-        function updateChatTarget() {
-            $chattopic.value = 0;
-            let name = $chatwith.options[$chatwith.selectedIndex].textContent;
-            [...$chattopic.options].slice(1).forEach((opt) => opt.disabled = opt.dataset.whose !== name);
-            localStorage.setItem("chatwith", $chatwith.selectedIndex);
+            namestonum.forEach((nameset) => {
+                if(nameset[0] == name){
+                    localStorage.setItem("chatwith", nameset[1]);
+                }
+            });
         }
     }
 

@@ -131,8 +131,7 @@
             }
 
             &:hover {
-                border-color: var(--pom2-black);
-
+                background: rgba(239, 198, 61, 0.56);
                 &>span::before {
                     content: "\2023";
                 }
