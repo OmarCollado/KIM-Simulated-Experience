@@ -211,11 +211,11 @@ span {
     display: flex;
     flex-direction: column;
     padding: 4px;
+    min-width:0%;
 }
 #pfps > img {
-    width:140px;
-    height:140px;
     border:2px solid gray;
+    width:140px;
 }
 #pfps > img:nth-child(2) {
     margin-top:auto;
@@ -223,5 +223,13 @@ span {
 #chatcontainer {
     display:flex;
     flex-direction: column;
-    width:100%;
+    flex-grow:1;
+    width:40%;
+}
+
+@media screen and (max-width: 768px) {
+  /* Your CSS rules for mobile devices in landscape mode */
+    #pfps {
+        display: none;
+    }
 }
